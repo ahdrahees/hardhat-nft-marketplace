@@ -10,6 +10,8 @@ contract BasicNft is ERC721 {
 
     // constructor(string memory name_, string memory symbol_) ERC721(name_, symbol_) {} // Or we can directly pass args
 
+    event DogMinted(uint256 indexed tokenId);
+
     constructor() ERC721("Rindappan", "RIN") {
         s_tokenCounter = 0;
     }
@@ -17,6 +19,7 @@ contract BasicNft is ERC721 {
     function mintNft() public returns (uint256) {
         _safeMint(msg.sender, s_tokenCounter);
         s_tokenCounter = s_tokenCounter + 1;
+        emit DogMinted(s_tokenCounter);
         return s_tokenCounter;
     }
 
